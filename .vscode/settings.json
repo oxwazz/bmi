@@ -1,0 +1,24 @@
+{
+  "eslint.validate": [
+    "js",
+    "ts",
+    "jsx",
+    "tsx",
+    "cjs",
+    "cts",
+    "mjs",
+    "mts",
+    "html",
+    "vue",
+    "md",
+    "json",
+    "yaml",
+    "yml",
+    "toml",
+    "css"
+  ],
+  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  }
+}
