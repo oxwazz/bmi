@@ -1,7 +1,7 @@
 {
   "name": "@oxwazz/bmi",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "packageManager": "pnpm@10.12.1",
   "description": "Body Mass Index (BMI) calculator",
   "author": "Muhammad Rahmahalim <muhammad.rahmahalim@gmail.com> (https://github.com/oxwazz)",
@@ -34,6 +34,10 @@
     "prepack": "nr build",
     "test": "vitest",
     "release": "bumpp && pnpm publish"
+  },
+  "dependencies": {
+    "convert": "catalog:",
+    "decimal.js": "catalog:"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:",
