@@ -38,10 +38,12 @@
   "devDependencies": {
     "@antfu/eslint-config": "catalog:",
     "@antfu/ni": "catalog:",
+    "@types/node": "catalog:",
     "bumpp": "catalog:",
     "eslint": "catalog:",
     "taze": "catalog:",
     "tsdown": "catalog:",
+    "typescript": "catalog:",
     "vitest": "catalog:"
   }
 }
