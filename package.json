@@ -1,16 +1,47 @@
 {
-  "name": "bmi",
+  "name": "@oxwazz/bmi",
+  "type": "module",
   "version": "0.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "packageManager": "pnpm@10.12.1",
+  "description": "Body Mass Index (BMI) calculator",
+  "author": "Muhammad Rahmahalim <muhammad.rahmahalim@gmail.com> (https://github.com/oxwazz)",
+  "license": "MIT",
+  "homepage": "https://github.com/oxwazz/bmi",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oxwazz/bmi.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.12.1+sha512.f0dda8580f0ee9481c5c79a1d927b9164f2c478e90992ad268bbb2465a736984391d6333d2c327913578b2804af33474ca554ba29c04a8b13060a717675ae3ac",
+  "bugs": {
+    "url": "https://github.com/oxwazz/bmi/issues"
+  },
+  "keywords": [
+    "bmi",
+    "body-mass-index"
+  ],
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown --clean --dts",
+    "watch": "tsdown --watch",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "prepack": "nr build",
+    "test": "vitest",
+    "release": "bumpp && pnpm publish"
+  },
   "devDependencies": {
-    "@antfu/ni": "^25.0.0"
+    "@antfu/eslint-config": "catalog:",
+    "@antfu/ni": "catalog:",
+    "bumpp": "catalog:",
+    "eslint": "catalog:",
+    "taze": "catalog:",
+    "tsdown": "catalog:",
+    "vitest": "catalog:"
   }
 }

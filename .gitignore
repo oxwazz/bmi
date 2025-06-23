@@ -1,5 +1,8 @@
 # Jetbrains
 .idea/
 
-# JS
+# Node.js
 node_modules/
+
+# tsdown
+dist/
