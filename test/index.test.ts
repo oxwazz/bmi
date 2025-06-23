@@ -1,48 +1,50 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { hello } from '../src' // Update this path to match your file
+import { describe, expect, it } from 'vitest'
+import { calc } from '../src'
 
-// Mock console.log to test console output
-const consoleSpy = vi.spyOn(console, 'log')
-
-describe('hello function', () => {
-  beforeEach(() => {
-    consoleSpy.mockClear()
+describe('test BMI Calculator', () => {
+  it('should calculate BMI and status for normal weight (number input)', () => {
+    const result = calc({ sex: 'male', height: 170, weight: 65 })
+    expect(result.bmi).toBeCloseTo(22.49, 2)
+    expect(result.status).toBe('Normal weight')
+    expect(result.normalWeightRange).toEqual({
+      min: 53.5,
+      max: 72,
+    })
   })
 
-  afterEach(() => {
-    vi.restoreAllMocks()
+  it('should calculate BMI and status for underweight', () => {
+    const result = calc({ sex: 'female', height: 160, weight: 45 })
+    expect(result.bmi).toBeCloseTo(17.58, 2)
+    expect(result.status).toBe('Underweight')
+    expect(result.normalWeightRange).toEqual({
+      min: 47.4,
+      max: 63.7,
+    })
   })
 
-  it('should return the correct string', () => {
-    const result = hello()
-    expect(result).toBe('Hello tsdown!')
+  it('should calculate BMI and status for obesity class II', () => {
+    const result = calc({ sex: 'male', height: 180, weight: 130 })
+    expect(result.bmi).toBeCloseTo(40.12, 2)
+    expect(result.status).toBe('Obesity class III') // BMI > 40
+    expect(result.normalWeightRange).toEqual({
+      min: 59.9,
+      max: 80.7,
+    })
   })
 
-  it('should return a string', () => {
-    const result = hello()
-    expect(typeof result).toBe('string')
+  it('should support string inputs', () => {
+    const result = calc({ sex: 'female', height: '165', weight: '70' })
+    expect(result.bmi).toBeCloseTo(25.71, 2)
+    expect(result.status).toBe('Pre-obesity')
+    expect(result.normalWeightRange).toEqual({
+      min: 50.4,
+      max: 67.8,
+    })
   })
 
-  it('should have consistent behavior', () => {
-    const results = []
-    for (let i = 0; i < 3; i++) {
-      results.push(hello())
-    }
-
-    expect(results).toEqual(['Hello tsdown!', 'Hello tsdown!', 'Hello tsdown!'])
-  })
-})
-
-// Test the default export
-describe('default export', () => {
-  beforeEach(() => {
-    consoleSpy.mockClear()
-  })
-
-  it('should export an object with hello method', async () => {
-    const module = await import('./../src/index') // Update this path
-
-    expect(module.default).toHaveProperty('hello')
-    expect(typeof module.default.hello).toBe('function')
+  it('should round normal weight range to 1 decimal', () => {
+    const result = calc({ sex: 'male', height: 175, weight: 75 })
+    expect(result.normalWeightRange.min % 0.1).toBe(0.0999999999999997)
+    expect(result.normalWeightRange.max % 0.1).toBe(0.09999999999999293)
   })
 })
